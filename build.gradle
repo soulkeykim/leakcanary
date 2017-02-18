@@ -19,10 +19,16 @@ subprojects {
 
 ext {
   minSdkVersion = 8
-  compileSdkVersion = 23
-  targetSdkVersion = compileSdkVersion
-  buildToolsVersion = '23.0.2'
   javaVersion = JavaVersion.VERSION_1_7
+  if (JavaVersion.current().isJava8Compatible()) {
+    buildToolsVersion = '25.0.2'
+    compileSdkVersion = 25
+  }
+  else {
+    buildToolsVersion = '23.0.2'
+    compileSdkVersion = 23
+  }
+  targetSdkVersion = compileSdkVersion
 
   GROUP = 'com.squareup.leakcanary'
   VERSION_NAME = "1.6-SNAPSHOT"
